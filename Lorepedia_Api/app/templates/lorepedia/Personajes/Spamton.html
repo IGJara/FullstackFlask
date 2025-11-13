@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spamton G. Spamton - Lorepedia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo_P.css') }}">
+</head>
+<body class="character-page">
+    <div class="container">
+        
+        <nav class="nav">
+            <a class="btn" href="{{ url_for('personajes') }}">⬅️ Volver a Personajes</a>
+        </nav>
+        
+        <h1 class="page-title" style="text-align: left;">Spamton G. Spamton</h1>
+        <p class="tagline" style="text-align: left; margin-bottom: 40px;">¡UN GRAN TIRO, VERDAD [BIG SHOT]!</p>
+        
+        <div class="character-layout">
+            
+            <aside class="sidebar">
+                
+                <div class="infobox">
+                    <h3 class="infobox-title">Spamton</h3>
+                    
+                    <img src="{{ url_for('static', filename='img/spamton-infobox.png') }}" 
+                         alt="Spamton en la Infobox" 
+                         class="infobox-image">
+                    
+                    <div class="infobox-section">
+                        <p class="section-subtitle">Información del Personaje</p>
+                        <ul class="infobox-list">
+                            <li>
+                                <span class="infobox-label">Primera Aparición:</span>
+                                <span class="infobox-value">Cyber City</span>
+                            </li>
+                            <li>
+                                <span class="infobox-label">Juego:</span>
+                                <span class="infobox-value">Deltarune Capítulo 2</span>
+                            </li>
+                            <li>
+                                <span class="infobox-label">Especie:</span>
+                                <span class="infobox-value">Muñeco de Basura/Puppet</span>
+                            </li>
+                            <li>
+                                <span class="infobox-label">Ocupación:</span>
+                                <span class="infobox-value">Mercader de Spam</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="infobox-section character-music" style="border-top: none; padding-top: 0;">
+                        <button class="btn-play-music" id="play-spamton-music">
+                            <span class="music-icon">🎵</span> ¡Reproducir Tema "Spamton"!
+                        </button>
+                    </div>
+
+                </div>
+            </aside>
+
+            <main class="main-content">
+                
+                <blockquote class="character-quote">
+                    "WHY BE THE [LITTLE SPONGE] WHO HATES ITS [$4.99] LIFE WHEN YOU CAN BE A [BIG SHOT]!"
+                </blockquote>
+                
+                <section class="content-section">
+                    <h2 class="section-title wiki-style">Biografía y Rol</h2>
+                    <p class="section-text">
+                        Spamton G. Spamton es un antagonista clave y el jefe secreto del Capítulo 2 de Deltarune. Es un "muñeco de basura" con una personalidad obsesiva y fragmentada, impulsado por una ambición desesperada por alcanzar el estatus de "Big Shot" y escapar de su existencia como un mercader fallido. Su historia es una de las más trágicas del juego, ligada a la locura y a misteriosas fuerzas externas.
+                    </p>
+                    <p class="section-text">
+                        Inicialmente, Spamton fue un comerciante común en el Cyber World, pero unas llamadas telefónicas misteriosas le ofrecieron "ofertas" y consejos que lo llevaron a un éxito efímero, seguido por su caída a la marginalidad. Su búsqueda lo lleva a intentar tomar control del Empty Room y, finalmente, a convertirse en el formidable jefe opcional **Spamton NEO**.
+                    </p>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-title wiki-style">Curiosidades y Trivia</h2>
+                    <ul class="section-text" style="list-style: disc; padding-left: 25px;">
+                        <li>Su forma de hablar, llena de corchetes, errores de tipeo y terminología de marketing, refleja su origen como un programa de spam.</li>
+                        <li>La batalla contra <strong>Spamton NEO</strong> suena la pista: <a href="https://www.youtube.com/watch?v=V31PVkwzpEY" target="_blank"><em>BIG SHOT</em></a>.</li>
+                        <li>El diseño de Spamton NEO es un claro paralelismo con Mettaton NEO de <strong>Undertale</strong>, confirmando un patrón en los jefes secretos de Toby Fox.</li>
+                        <li>El objeto de la clave de Spamton es <strong>'KeyGen'</strong>, haciendo referencia a los generadores de claves de software pirata.</li>
+                    </ul>
+                </section>
+
+                <section class="content-section gallery">
+                    <h2 class="section-title wiki-style">Galería</h2>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="{{ url_for('static', filename='img/spamton-gallery-1.png') }}" alt="Spamton Normal">
+                            <p class="gallery-caption">Spamton en su forma base</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="{{ url_for('static', filename='img/spamton-neo-gallery-2.png') }}" alt="Spamton NEO">
+                            <p class="gallery-caption">Spamton NEO</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="{{ url_for('static', filename='img/spamton-shop-gallery-3.png') }}" alt="Tienda de Spamton">
+                            <p class="gallery-caption">Tienda en el basurero</p>
+                        </div>
+                        
+                    </div>
+                </section>
+
+            </main>
+        </div>
+        </div>
+
+    <audio id="spamton-audio" src="../../../static/Recursos Principal/musica/Spamtom.mp3" preload="auto"></audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const playButton = document.getElementById('play-spamton-music');
+            const audio = document.getElementById('spamton-audio');
+
+            playButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.innerHTML = '<span class="music-icon">⏸️</span> Detener Tema';
+                } else {
+                    audio.pause();
+                    playButton.innerHTML = '<span class="music-icon">🎵</span> ¡Reproducir Tema!';
+                }
+            });
+
+            audio.addEventListener('ended', () => {
+                playButton.innerHTML = '<span class="music-icon">🎵</span> ¡Reproducir Tema!';
+            });
+        });
+    </script>
+</body>
+</html>

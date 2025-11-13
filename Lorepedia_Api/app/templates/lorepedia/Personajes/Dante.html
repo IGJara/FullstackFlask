@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dante - Lorepedia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo_P.css') }}">
+</head>
+<body class="character-page">
+    <div class="container">
+        
+        <nav class="nav">
+            <a class="btn" href="{{ url_for('personajes') }}">⬅️ Volver a Personajes</a>
+        </nav>
+        
+        <h1 class="page-title" style="text-align: left;">Dante</h1>
+        <p class="tagline" style="text-align: left; margin-bottom: 40px;">El legendario cazador de demonios.</p>
+        
+        <div class="character-layout">
+            
+            <aside class="sidebar">
+                <div class="infobox">
+                    <h3 class="infobox-title">Dante</h3>
+                    
+                    <img src="{{ url_for('static', filename='img/dante-infobox.png') }}" 
+                         alt="Dante en la Infobox" 
+                         class="infobox-image">
+                    
+                    <div class="infobox-section">
+                        <p class="section-subtitle">Información del Personaje</p>
+                        <ul class="infobox-list">
+                            <li>
+                                <span class="infobox-label">Primera Aparición:</span>
+                                <span class="infobox-value">Devil May Cry (2001)</span>
+                            </li>
+                            <li>
+                                <span class="infobox-label">Especie:</span>
+                                <span class="infobox-value">Medio Demonio</span>
+                            </li>
+                            <li>
+                                <span class="infobox-label">Afiliación:</span>
+                                <span class="infobox-value">Devil May Cry (Agencia)</span>
+                            </li>
+                            <li>
+                                <span class="infobox-label">Armas Principales:</span>
+                                <span class="infobox-value">Rebellion y Ebony & Ivory</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="infobox-section character-music" style="border-top: none; padding-top: 0;">
+                        <button class="btn-play-music" id="play-dante-music">
+                            <span class="music-icon">🎵</span> ¡Reproducir Tema!
+                        </button>
+                    </div>
+
+                </div>
+            </aside>
+
+            <main class="main-content">
+                
+                <blockquote class="character-quote">
+                    "I should have been the one to fill your dark soul with LIIIIIGHT!"
+                </blockquote>
+                
+                <section class="content-section">
+                    <h2 class="section-title wiki-style">Biografía y Rol</h2>
+                    <p class="section-text">
+                        Dante es el protagonista principal de la saga Devil May Cry. Es un mercenario y cazador de demonios, el segundo hijo del legendario demonio Sparda y la humana Eva. Su negocio, Devil May Cry, se especializa en resolver casos relacionados con la actividad demoníaca.
+                    </p>
+                    <p class="section-text">
+                        Conocido por su actitud despreocupada y sarcástica, Dante posee una fuerza, velocidad y resistencia sobrehumanas, además de la capacidad de activar su forma demoníaca (Devil Trigger). Gran parte de su historia gira en torno a su rivalidad y compleja relación con su hermano gemelo, Vergil.
+                    </p>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-title wiki-style">Estilo de Combate</h2>
+                    <ul class="section-text" style="list-style: disc; padding-left: 25px;">
+                        <li>El estilo de combate de Dante es altamente versátil, alternando entre estilos como <strong>Trickster</strong>, <strong>Swordmaster</strong>, <strong>Gunslinger</strong> y <strong>Royal Guard</strong>.</li>
+                        <li>Sus espadas <strong>Rebellion</strong> y <strong>Yamato</strong> (ocasionalmente) son reliquias familiares de su padre.</li>
+                        <li>Las pistolas gemelas, <strong>Ebony</strong> y <strong>Ivory</strong>, son sus armas de fuego más icónicas.</li>
+                        <li>Es famoso por su amor a la pizza y su desprecio por las aceitunas.</li>
+                    </ul>
+                </section>
+
+                <section class="content-section gallery">
+                    <h2 class="section-title wiki-style">Galería</h2>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="{{ url_for('static', filename='img/dante-gallery-1.png') }}" alt="Dante DMC3">
+                            <p class="gallery-caption">Dante joven (DMC3)</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="{{ url_for('static', filename='img/dante-gallery-2.png') }}" alt="Dante Devil Trigger">
+                            <p class="gallery-caption">Forma Devil Trigger</p>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <audio id="dante-audio" src="{{ url_for('static', filename='musica/Dante.mp3') }}" preload="auto"></audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const playButton = document.getElementById('play-dante-music');
+            const audio = document.getElementById('dante-audio');
+            // Lógica del botón de música
+            playButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.innerHTML = '<span class="music-icon">⏸️</span> Detener Tema';
+                } else {
+                    audio.pause();
+                    playButton.innerHTML = '<span class="music-icon">🎵</span> ¡Reproducir Tema!';
+                }
+            });
+            audio.addEventListener('ended', () => {
+                playButton.innerHTML = '<span class="music-icon">🎵</span> ¡Reproducir Tema!';
+            });
+        });
+    </script>
+</body>
+</html>

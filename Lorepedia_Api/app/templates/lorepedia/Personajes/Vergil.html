@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vergil - Lorepedia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo_P.css') }}">
+</head>
+<body class="character-page">
+    <div class="container">
+        
+        <nav class="nav">
+            <a class="btn" href="{{ url_for('personajes') }}">⬅️ Volver a Personajes</a>
+        </nav>
+        
+        <h1 class="page-title" style="text-align: left;">Vergil</h1>
+        <p class="tagline" style="text-align: left; margin-bottom: 40px;">Buscando poder, el hermano oscuro de Dante.</p>
+        
+        <div class="character-layout">
+            
+            <aside class="sidebar">
+                <div class="infobox">
+                    <h3 class="infobox-title">Vergil</h3>
+                    
+                    <img src="{{ url_for('static', filename='img/vergil-infobox.png') }}" 
+                         alt="Vergil en la Infobox" 
+                         class="infobox-image">
+                    
+                    <div class="infobox-section">
+                        <p class="section-subtitle">Información del Personaje</p>
+                        <ul class="infobox-list">
+                            <li>
+                                <span class="infobox-label">Primera Aparición:</span>
+                                <span class="infobox-value">Devil May Cry 3</span>
+                            </li>
+                            <li>
+                                <span class="infobox-label">Especie:</span>
+                                <span class="infobox-value">Medio Demonio</span>
+                            </li>
+                            <li>
+                                <span class="infobox-label">Relación:</span>
+                                <span class="infobox-value">Hermano Gemelo de Dante</span>
+                            </li>
+                            <li>
+                                <span class="infobox-label">Arma Principal:</span>
+                                <span class="infobox-value">Yamato</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="infobox-section character-music" style="border-top: none; padding-top: 0;">
+                        <button class="btn-play-music" id="play-vergil-music">
+                            <span class="music-icon">🎵</span> ¡Reproducir Tema!
+                        </button>
+                    </div>
+
+                </div>
+            </aside>
+
+            <main class="main-content">
+                
+                <blockquote class="character-quote">
+                    "Might controls everything. And without strength, you can't protect anything."
+                </blockquote>
+                
+                <section class="content-section">
+                    <h2 class="section-title wiki-style">Biografía y Rol</h2>
+                    <p class="section-text">
+                        Vergil es el hermano gemelo mayor de Dante y un personaje central en la mitología de Devil May Cry. A diferencia de su hermano, Vergil abrazó su herencia demoníaca y busca obtener el poder absoluto de Sparda, a menudo a través de medios oscuros y peligrosos.
+                    </p>
+                    <p class="section-text">
+                        Su búsqueda de poder se basa en la creencia de que la fuerza es lo único que puede protegerlo del sufrimiento, una filosofía que lo pone constantemente en conflicto con Dante. Es un espadachín maestro y utiliza la katana <strong>Yamato</strong>, una reliquia de su padre, para cortar el tejido del espacio.
+                    </p>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-title wiki-style">Estilo de Combate</h2>
+                    <ul class="section-text" style="list-style: disc; padding-left: 25px;">
+                        <li>El estilo de combate de Vergil es la elegancia y la precisión, centrándose en el arte de la espada (<strong>Yamato</strong>) y el manejo de fuerzas demoníacas.</li>
+                        <li>Utiliza la técnica <strong>Judgement Cut</strong> para atacar a gran velocidad desde múltiples ángulos.</li>
+                        <li>Sus ataques a distancia se basan en espadas fantasma creadas a partir de energía demoníaca (<strong>Summoned Swords</strong>).</li>
+                        <li>En <strong>Devil May Cry 5</strong>, obtiene la forma <strong>Sin Devil Trigger</strong>, alcanzando su máximo potencial demoníaco.</li>
+                    </ul>
+                </section>
+
+                <section class="content-section gallery">
+                    <h2 class="section-title wiki-style">Galería</h2>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="{{ url_for('static', filename='img/vergil-gallery-1.png') }}" alt="Vergil con Yamato">
+                            <p class="gallery-caption">Vergil listo para el combate</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="{{ url_for('static', filename='img/vergil-gallery-2.png') }}" alt="Vergil Sin Devil Trigger">
+                            <p class="gallery-caption">Forma Sin Devil Trigger</p>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <audio id="vergil-audio" src="{{ url_for('static', filename='musica/Vergil.mp3') }}" preload="auto"></audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const playButton = document.getElementById('play-vergil-music');
+            const audio = document.getElementById('vergil-audio');
+            // Lógica del botón de música
+            playButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.innerHTML = '<span class="music-icon">⏸️</span> Detener Tema';
+                } else {
+                    audio.pause();
+                    playButton.innerHTML = '<span class="music-icon">🎵</span> ¡Reproducir Tema!';
+                }
+            });
+            audio.addEventListener('ended', () => {
+                playButton.innerHTML = '<span class="music-icon">🎵</span> ¡Reproducir Tema!';
+            });
+        });
+    </script>
+</body>
+</html>

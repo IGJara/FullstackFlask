@@ -1,0 +1,338 @@
+/* ======================================= */
+/* ====== 0. BASE Y RESET COMÚN (LOREPEDIA THEME) ====== */
+/* ======================================= */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  background-color: #0a0a0c; /* Fondo más oscuro */
+  color: #e9eef2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  padding: 40px 24px;
+}
+
+.container {
+  text-align: center;
+  /* AUMENTO DE ANCHO PARA LA LISTA DE PERSONAJES Y ESTILOS COMUNES */
+  max-width: 900px; 
+  width: 100%;
+  padding: 40px 30px;
+  background: rgba(18, 18, 20, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 24px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #0f0f12;
+  background-color: #19e0ff; /* acento cian */
+  border: none;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-2px);
+  background-color: #00c8ea;
+  box-shadow: 0 6px 15px rgba(0, 200, 234, 0.4);
+  outline: none;
+}
+
+.page-title {
+  font-size: 2.2rem;
+  margin: 10px 0 8px;
+  color: #ffc107;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #b0b8c0;
+  margin-bottom: 30px;
+}
+
+/* ======================================= */
+/* ====== 1. ESTILOS ESPECÍFICOS: LISTA DE PERSONAJES (Personajes.html) ====== */
+/* ======================================= */
+
+.search-bar {
+  margin-bottom: 30px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background-color: #1c1c1f;
+  color: #e9eef2;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-input:focus {
+  border-color: #19e0ff;
+  box-shadow: 0 0 0 3px rgba(25, 224, 255, 0.3);
+  outline: none;
+}
+
+.characters-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* Usar Grid para un layout de lista moderno y adaptable */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 2 a 3 columnas en ancho */
+  gap: 15px;
+  text-align: left;
+}
+
+.characters-list li {
+  margin: 0;
+  transition: opacity 0.3s ease;
+}
+
+.char-link {
+  display: block;
+  padding: 16px 20px;
+  background: #28282e;
+  color: #e9eef2;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.char-link:hover,
+.char-link:focus-visible {
+  background: #19e0ff;
+  color: #0a0a0c;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(25, 224, 255, 0.2);
+}
+
+/* ======================================= */
+/* ====== 2. ESTILOS ESPECÍFICOS: PÁGINA PRINCIPAL (index.html) ====== */
+/* ======================================= */
+
+body.index-page {
+    align-items: center; 
+    padding: 24px; 
+}
+
+body.index-page .container {
+    max-width: 450px; /* Mantener la página de inicio más compacta */
+    padding: 50px 30px; 
+}
+
+.logo-image {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.main-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #19e0ff; 
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.main-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+
+/* ======================================= */
+/* ====== 3. ESTILOS ESPECÍFICOS: PÁGINAS INDIVIDUALES (WIKI STYLE) ====== */
+/* ======================================= */
+
+body.character-page .container {
+    max-width: 1000px; 
+    text-align: left;
+}
+
+.character-layout {
+    display: flex;
+    flex-direction: column; 
+    gap: 30px;
+}
+
+.main-content {
+    flex-grow: 1;
+    min-width: 0; 
+}
+
+.sidebar {
+    width: 100%;
+    max-width: 300px; 
+    flex-shrink: 0;
+    order: -1; 
+}
+
+/* Estilo de la Caja de Información (Infobox) */
+.infobox {
+    background: #1c1c1f; 
+    border: 1px solid #3a3a40;
+    border-radius: 12px;
+    padding: 0;
+    margin-bottom: 30px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.infobox-title {
+    background-color: #19e0ff; 
+    color: #0a0a0c;
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding: 12px;
+    text-align: center;
+    margin: 0;
+}
+
+.infobox-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 1px solid #3a3a40;
+}
+
+.infobox-section {
+    padding: 15px 15px 5px 15px;
+    border-top: 1px solid #28282e;
+    /* --- AÑADIR ESTO --- */
+    text-align: center; 
+    /* ------------------ */
+}
+
+.infobox-section:first-of-type {
+    border-top: none;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    color: #ffc107; 
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.infobox-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.infobox-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+}
+
+.infobox-label {
+    color: #b0b8c0;
+}
+
+.infobox-value {
+    color: #e9eef2;
+    text-align: right;
+}
+
+.section-title.wiki-style {
+    color: #e9eef2;
+    font-size: 2.4rem;
+    text-align: left;
+    margin-bottom: 10px;
+    padding-left: 0;
+    border-bottom: 2px solid #ffc107; 
+    padding-bottom: 5px;
+}
+
+.section-title.wiki-style::after {
+    content: none; 
+}
+
+.character-quote {
+    background-color: #28282e;
+    border-left: 5px solid #19e0ff;
+    padding: 15px 20px;
+    margin: 20px 0;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #cfd9e1;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 120px; 
+    object-fit: cover;
+}
+
+
+/* ====== Responsivo para Wiki Layout ====== */
+@media (min-width: 900px) {
+    .character-layout {
+        flex-direction: row; 
+    }
+    
+    .sidebar {
+        order: 1; 
+    }
+}
+
+/* ====== Responsivo General ====== */
+@media (max-width: 550px) {
+  body {
+    padding: 24px 16px;
+  }
+  
+  .container {
+    padding: 30px 20px;
+  }
+  /* Ajuste de lista para móviles */
+  .characters-list {
+      grid-template-columns: 1fr;
+      gap: 10px;
+  }
+}

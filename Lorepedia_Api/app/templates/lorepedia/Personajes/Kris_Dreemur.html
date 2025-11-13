@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kris - Lorepedia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo_P.css') }}">
+</head>
+<body class="character-page">
+    <div class="container">
+        
+        <nav class="nav">
+            <a class="btn" href="{{ url_for('personajes') }}">⬅️ Volver a Personajes</a>
+        </nav>
+        
+        <h1 class="page-title" style="text-align: left;">Kris</h1>
+        <p class="tagline" style="text-align: left; margin-bottom: 40px;">El humano y el/la líder del grupo.</p>
+        
+        <div class="character-layout">
+            
+            <aside class="sidebar">
+                <div class="infobox">
+                    <h3 class="infobox-title">Kris</h3>
+                    
+                    <img src="{{ url_for('static', filename='img/kris-infobox.png') }}" 
+                         alt="Kris en la Infobox" 
+                         class="infobox-image">
+                    
+                    <div class="infobox-section">
+                        <p class="section-subtitle">Información del Personaje</p>
+                        <ul class="infobox-list">
+                            <li>
+                                <span class="infobox-label">Primera Aparición:</span>
+                                <span class="infobox-value">Casa de Toriel</span>
+                            </li>
+                            <li>
+                                <span class="infobox-label">Especie:</span>
+                                <span class="infobox-value">Humano</span>
+                            </li>
+                            <li>
+                                <span class="infobox-label">Rol:</span>
+                                <span class="infobox-value">Líder del *Fun Gang*</span>
+                            </li>
+                            <li>
+                                <span class="infobox-label">Arma Principal (Dark World):</span>
+                                <span class="infobox-value">Espada y Escudo</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="infobox-section character-music" style="border-top: none; padding-top: 0;">
+                        <button class="btn-play-music" id="play-kris-music">
+                            <span class="music-icon">🎵</span> ¡Reproducir Tema!
+                        </button>
+                    </div>
+
+                </div>
+            </aside>
+
+            <main class="main-content">
+                
+                <blockquote class="character-quote">
+                    [Sin diálogo propio, usa acciones.]
+                </blockquote>
+                
+                <section class="content-section">
+                    <h2 class="section-title wiki-style">Biografía y Rol</h2>
+                    <p class="section-text">
+                        Kris es el **protagonista** silencioso de Deltarune y el personaje al que el jugador controla. Vive en la ciudad con su madre adoptiva, **Toriel**, y es el/la hermano/a menor de **Asriel**. En el Light World, es conocido por ser callado e introvertido.
+                    </p>
+                    <p class="section-text">
+                        En el Dark World, Kris es el **"Héroe"** de la Profecía, destinado a liderar a los "Lightners" para sellar las Fuentes Oscuras. Kris ejerce la **Determinación** (Determinaton), y al final de cada capítulo, se revela que puede separarse del **Alma** (el jugador), actuando por su cuenta, lo que plantea grandes preguntas sobre su verdadera naturaleza y voluntad.
+                    </p>
+                </section>
+
+                <section class="content-section">
+                    <h2 class="section-title wiki-style">Curiosidades y Trivia</h2>
+                    <ul class="section-text" style="list-style: disc; padding-left: 25px;">
+                        <li>Kris siempre lleva su **pelo cubriendo** los ojos, una característica de diseño para ocultar la expresión y el verdadero yo del personaje.</li>
+                        <li>El nombre Kris es un anagrama de **"Risk"** (Riesgo).</li>
+                        <li>En el Light World, Kris lleva un suéter verde y amarillo, y en el Dark World, se transforma en una armadura púrpura y una capa.</li>
+                        <li>A diferencia de Frisk en **Undertale**, Kris es un personaje con una historia personal bien establecida dentro del mundo del juego.</li>
+                    </ul>
+                </section>
+
+                <section class="content-section gallery">
+                    <h2 class="section-title wiki-style">Galería</h2>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="{{ url_for('static', filename='img/kris-gallery-1.png') }}" alt="Kris en el Light World">
+                            <p class="gallery-caption">Kris en el Mundo de la Luz</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="{{ url_for('static', filename='img/kris-gallery-2.png') }}" alt="Kris en el Dark World">
+                            <p class="gallery-caption">Kris en el Mundo Oscuro</p>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <audio id="kris-audio" src="{{ url_for('static', filename='musica/Kris.mp3') }}" preload="auto"></audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const playButton = document.getElementById('play-kris-music');
+            const audio = document.getElementById('kris-audio');
+            // Lógica del botón de música
+            playButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                    playButton.innerHTML = '<span class="music-icon">⏸️</span> Detener Tema';
+                } else {
+                    audio.pause();
+                    playButton.innerHTML = '<span class="music-icon">🎵</span> ¡Reproducir Tema!';
+                }
+            });
+            audio.addEventListener('ended', () => {
+                playButton.innerHTML = '<span class="music-icon">🎵</span> ¡Reproducir Tema!';
+            });
+        });
+    </script>
+</body>
+</html>

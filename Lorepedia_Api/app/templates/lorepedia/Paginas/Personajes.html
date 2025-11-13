@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personajes - Lorepedia</title>
-    <link rel="stylesheet" href="../../../static/css/estilo.css"> 
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}"> 
     
 </head>
 <body>
     <div class="container">
         <nav class="nav">
-            <a class="btn" href="/">🏠 Home</a>
+            <a class="btn" href="{{ url_for('index') }}">🏠 Home</a>
         </nav>
 
         <h1 class="page-title">Lista de Personajes ✨</h1>
@@ -21,12 +22,13 @@
         </div>
 
         <ul class="characters-list" id="characters-list">
-            <li><a href="../Personajes/Dante.html" class="char-link">Dante</a></li>
-            <li><a href="../Personajes/Gerson_Boom.html" class="char-link">Gerson Boom</a></li>
-            <li><a href="../Personajes/Kris_Dreemur.html" class="char-link">Kris Dreemur</a></li>
-            <li><a href="../Personajes/Ralsei.html" class="char-link">Ralsei</a></li>
-            <li><a href="../Personajes/Susie.html" class="char-link">Susie</a></li>
-            <li><a href="../Personajes/Vergil.html" class="char-link">Vergil</a></li>
+            {# El bucle itera sobre la lista 'personajes' generada por el escaneo de carpetas en app.py #}
+            {% for personaje in personajes %}
+            <li>
+                <a href="{{ url_for(personaje.endpoint) }}" class="char-link">{{ personaje.nombre }}</a>
+            </li>
+            {% endfor %}
+            {# Fin del bucle #}
         </ul>
         
         <p id="no-results" style="display: none;">No se encontraron personajes con ese nombre. 😥</p>
