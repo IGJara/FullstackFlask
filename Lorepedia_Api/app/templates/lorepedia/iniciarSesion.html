@@ -4,28 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión 🔑</title>
-    <link rel="stylesheet" href="../../static/css/style.css">
-</head>
+    <link rel="stylesheet" href="../../static/css/style.css"> 
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='Recursos Principal/imagenes/Lorepedia Logo 3.png') }}">
+    
+    </head>
 <body>
-    <form>
-        <img src="../../static/img/user.png" alt="user-icon">
-        <label for="username">Nombre de Usuario</label>
-        <input type="text" id="username" placeholder="Ingresa tu usuario" required>
-        <label for="password">Contrasena</label>
-        <input type="password" id="password" placeholder="Ingresa tu contrasena" required>
-        <div class="box-visible">
-            <input type="checkbox" id="visible">
-            <label for="visible">Mostrar contrasena</label>
+    
+    <div class="container">
+        <div class="nav">
+            <a class="btn" href="{{ url_for('index') }}">🏠 Home</a> 
         </div>
-        <button type="submit" id="submit">Iniciar sesion</button>
 
-        <p class="enlace-registro">
-            ¿No tienes una cuenta? 
-            <a href="/registrar" class="link-secundario">
-                **Regístrate aquí**
-            </a>
-        </p>
-    </form>
+        <form class="login-form">
+            <img src="../../static/img/user.png" alt="user-icon">
+            <label for="username">Nombre de Usuario</label>
+            <input type="text" id="username" placeholder="Ingresa tu usuario" required>
+            
+            <label for="password">Contrasena</label>
+            <input type="password" id="password" placeholder="Ingresa tu contrasena" required>
+            
+            <div class="box-visible">
+                <input type="checkbox" id="visible">
+                <label for="visible">Mostrar contrasena</label>
+            </div>
+            
+            <button type="submit" id="submit">Iniciar sesion</button>
+
+            <p class="enlace-registro">
+                ¿No tienes una cuenta? 
+                <a href="/registrar" class="link-secundario">
+                    Regístrate aquí
+                </a>
+            </p>
+        </form>
+    </div>
 
     <script>
         const HOME_URL = "{{ url_for('index') }}"; 
@@ -35,3 +47,6 @@
     
 </body>
 </html>
+
+
+

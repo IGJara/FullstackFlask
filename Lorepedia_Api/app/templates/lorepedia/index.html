@@ -1,165 +1,172 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lorepedia</title>
-  <link rel="stylesheet" href="../../static/css/estilo.css"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Lorepedia</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo_Index.css') }}"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='Recursos Principal/imagenes/Lorepedia Logo 3.png') }}">
+    
 </head>
 <body>
-  <div class="container">
-    <!-- Logo en lugar del título -->
-    <img
-      src="../../static/Recursos Principal/imagenes/Lorepedia Logo 1.png"
-      alt="Logo de Lorepedia"
-      class="logo"
-    />
+    <div class="container">
+        <img
+            src="{{ url_for('static', filename='Recursos Principal/imagenes/Lorepedia Logo 1.png') }}"
+            alt="Logo de Lorepedia"
+            class="logo-image" 
+        />
+        
+        <h1 class="main-title">LOREPEDIA</h1>
 
-    <p class="tagline">
-      La enciclopedia de personajes donde cada historia, cada detalle y cada destino se une en un mismo lugar.
-      Explora, descubre y aporta al conocimiento compartido.
-    </p>
+        <p class="tagline main-description">
+            La enciclopedia de personajes donde cada historia, cada detalle y cada destino se une en un mismo lugar.
+            Explora, descubre y aporta al conocimiento compartido.
+        </p>
 
-    <!-- Navegación básica a tus páginas existentes -->
-    <nav class="nav">
-      <a class="btn" href="/personajes">Personajes</a>
-      <a class="btn" href="/login">Iniciar sesión</a>
-    </nav>
-
-    <!-- 🎵 Botón para controlar música -->
-    <button id="music-btn" class="btn-music" type="button">🎶 Reproducir música</button>
-    <!-- 🎚️ Control de volumen -->
-    <div class="volume-wrap">
-      <input id="volume-range" type="range" min="0" max="100" value="25" step="1" aria-label="Volumen"/>
-      <span id="volume-label">25%</span>
+        <div class="main-actions">
+            <a class="btn" href="/personajes">Personajes</a>
+            <a class="btn" href="/login">Iniciar sesión</a>
+        </div>
+        
+        <div class="music-player">
+            <button id="music-btn" class="btn-music" type="button">🎶 Reproducir música</button>
+            <div class="volume-wrap">
+                <input id="volume-range" type="range" min="0" max="100" value="25" step="1" aria-label="Volumen"/>
+                <span id="volume-label">25%</span>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- 🎵 Audio de fondo -->
-  <audio id="bg-music" loop preload="auto">
-    <source src="../../static/Recursos Principal/musica/Gerson.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio en HTML5.
-  </audio>
+    <audio id="bg-music" loop preload="auto">
+        <source src="{{ url_for('static', filename='Recursos Principal/musica/Gerson.mp3') }}" type="audio/mpeg">
+        Tu navegador no soporta audio en HTML5.
+    </audio>
 
-  <!-- 🪟 Modal habilitar música -->
-  <div id="music-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc" hidden>
-    <div class="modal">
-      <h2 id="modal-title">¿Habilitar música de fondo?</h2>
-      <p id="modal-desc">Esta página reproduce música ambiental en bucle. Puedes activar o desactivar cuando quieras.</p>
-      <div class="modal-actions">
-        <button id="enable-audio" class="btn-music" type="button">Sí, habilitar</button>
-        <button id="dismiss-audio" class="btn-secondary" type="button">No, gracias</button>
-      </div>
-      <small class="modal-note">Tu preferencia se guardará para próximas páginas.</small>
+    <div id="music-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc" hidden>
+        <div class="modal">
+            <h2 id="modal-title">¿Habilitar música de fondo?</h2>
+            <p id="modal-desc">Esta página reproduce música ambiental en bucle. Puedes activar o desactivar cuando quieras.</p>
+            <div class="modal-actions">
+                <button id="enable-audio" class="btn-music" type="button">Sí, habilitar</button>
+                <button id="dismiss-audio" class="btn-secondary" type="button">No, gracias</button>
+            </div>
+            <small class="modal-note">Tu preferencia se guardará para próximas páginas.</small>
+        </div>
     </div>
-  </div>
 
-  <script>
-    // ===== Claves y utilidades de persistencia =====
-    const STORAGE_KEY = 'lorepedia_music_prefs';
-    const defaults = { decided: false, enabled: false, volume: 0.25, muted: false };
+    <script>
+        // ===== Claves y utilidades de persistencia =====
+        const STORAGE_KEY = 'lorepedia_music_prefs';
+        const defaults = { decided: false, enabled: false, volume: 0.25, muted: false };
 
-    const loadPrefs = () => {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        return raw ? { ...defaults, ...JSON.parse(raw) } : { ...defaults };
-      } catch { return { ...defaults }; }
-    };
-    const savePrefs = (p) => {
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch {}
-    };
+        const loadPrefs = () => {
+          try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            return raw ? { ...defaults, ...JSON.parse(raw) } : { ...defaults };
+          } catch { return { ...defaults }; }
+        };
+        const savePrefs = (p) => {
+          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch {}
+        };
 
-    // ===== Elementos =====
-    const audio = document.getElementById('bg-music');
-    const btn   = document.getElementById('music-btn');
-    const range = document.getElementById('volume-range');
-    const label = document.getElementById('volume-label');
-    const modal = document.getElementById('music-modal');
-    const enableBtn  = document.getElementById('enable-audio');
-    const dismissBtn = document.getElementById('dismiss-audio');
+        // ===== Elementos =====
+        const audio = document.getElementById('bg-music');
+        const btn   = document.getElementById('music-btn');
+        const range = document.getElementById('volume-range');
+        const label = document.getElementById('volume-label');
+        const modal = document.getElementById('music-modal');
+        const enableBtn  = document.getElementById('enable-audio');
+        const dismissBtn = document.getElementById('dismiss-audio');
 
-    function closeModal() {
-      modal.hidden = true;
-      modal.style.display = 'none';
-    }
-    function openModal() {
-      modal.hidden = false;
-      modal.style.display = '';
-    }
+        function closeModal() {
+          modal.hidden = true;
+          modal.style.display = 'none';
+        }
+        function openModal() {
+          modal.hidden = false;
+          modal.style.display = '';
+        }
 
-    // ===== Estado inicial =====
-    const prefs = loadPrefs();
-    audio.volume = prefs.volume;
-    range.value  = Math.round(prefs.volume * 100);
-    label.textContent = `${range.value}%`;
+        // ===== Estado inicial =====
+        const prefs = loadPrefs();
+        audio.volume = prefs.volume;
+        range.value  = Math.round(prefs.volume * 100);
+        label.textContent = `${range.value}%`;
 
-    if (prefs.decided) {
-      if (prefs.enabled) {
-        audio.play().then(() => {
-          btn.textContent = '⏸️ Pausar música';
-        }).catch(() => {/* el botón seguirá funcionando */});
-      }
-    } else {
-      openModal();
-    }
+        if (prefs.decided) {
+          if (prefs.enabled) {
+            audio.play().then(() => {
+              btn.textContent = '⏸️ Pausar música';
+            }).catch(() => {/* el botón seguirá funcionando */});
+          }
+        } else {
+          openModal();
+        }
 
-    // ===== Modal: Aceptar música =====
-    enableBtn?.addEventListener('click', async () => {
-      prefs.decided = true;
-      prefs.enabled = true;
-      prefs.volume  = audio.volume = Number(range.value) / 100 || 0.25;
-      savePrefs(prefs);
-      try {
-        await audio.play(); // este click cuenta como gesto
-        btn.textContent = '⏸️ Pausar música';
-      } catch (e) {
-        console.error('No se pudo reproducir el audio:', e);
-      }
-      closeModal();
-    });
-
-    // ===== Modal: Rechazar música =====
-    dismissBtn?.addEventListener('click', () => {
-      prefs.decided = true;
-      prefs.enabled = false;
-      savePrefs(prefs);
-      audio.pause();
-      btn.textContent = '🎶 Reproducir música';
-      closeModal();
-    });
-
-    // ===== Botón Play/Pause principal =====
-    btn.addEventListener('click', async () => {
-      try {
-        if (audio.paused) {
-          await audio.play();
-          btn.textContent = '⏸️ Pausar música';
+        // ===== Modal: Aceptar música =====
+        enableBtn?.addEventListener('click', async () => {
           prefs.decided = true;
           prefs.enabled = true;
+          prefs.volume  = audio.volume = Number(range.value) / 100 || 0.25;
           savePrefs(prefs);
-        } else {
-          audio.pause();
-          btn.textContent = '🎶 Reproducir música';
+          try {
+            await audio.play(); // este click cuenta como gesto
+            btn.textContent = '⏸️ Pausar música';
+          } catch (e) {
+            console.error('No se pudo reproducir el audio:', e);
+          }
+          closeModal();
+        });
+
+        // ===== Modal: Rechazar música =====
+        dismissBtn?.addEventListener('click', () => {
           prefs.decided = true;
           prefs.enabled = false;
           savePrefs(prefs);
-        }
-      } catch (e) {
-        console.error('No se pudo reproducir el audio:', e);
-      }
-    });
+          audio.pause();
+          btn.textContent = '🎶 Reproducir música';
+          closeModal();
+        });
 
-    audio.addEventListener('pause', () => (btn.textContent = '🎶 Reproducir música'));
-    audio.addEventListener('play',  () => (btn.textContent = '⏸️ Pausar música'));
+        // ===== Botón Play/Pause principal =====
+        btn.addEventListener('click', async () => {
+          try {
+            if (audio.paused) {
+              await audio.play();
+              btn.textContent = '⏸️ Pausar música';
+              prefs.decided = true;
+              prefs.enabled = true;
+              savePrefs(prefs);
+            } else {
+              audio.pause();
+              btn.textContent = '🎶 Reproducir música';
+              prefs.decided = true;
+              prefs.enabled = false;
+              savePrefs(prefs);
+            }
+          } catch (e) {
+            console.error('No se pudo reproducir el audio:', e);
+          }
+        });
 
-    // ===== Slider de volumen =====
-    range.addEventListener('input', () => {
-      const v = Number(range.value) / 100;
-      audio.volume = v;
-      label.textContent = `${range.value}%`;
-      prefs.volume = v;
-      savePrefs(prefs);
-    });
-  </script>
+        audio.addEventListener('pause', () => (btn.textContent = '🎶 Reproducir música'));
+        audio.addEventListener('play',  () => (btn.textContent = '⏸️ Pausar música'));
+
+        // ===== Slider de volumen =====
+        range.addEventListener('input', () => {
+          const v = Number(range.value) / 100;
+          audio.volume = v;
+          label.textContent = `${range.value}%`;
+          prefs.volume = v;
+          savePrefs(prefs);
+        });
+    </script>
 </body>
 </html>
+
+
+
+
+

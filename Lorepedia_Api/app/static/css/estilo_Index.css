@@ -18,7 +18,7 @@ body {
     color: #e9eef2;
     display: flex;
     justify-content: center;
-    /* Alineación por defecto para páginas con scroll (Personajes) */
+    /* Por defecto, alineamos arriba (flex-start) para páginas con scroll (Personajes) */
     align-items: flex-start; 
     padding: 40px 24px;
 }
@@ -90,14 +90,14 @@ body.index-page {
     padding: 24px; 
 }
 
-/* 2. TAMAÑO: Contenedor más estrecho para la landing page */
+/* 2. TAMAÑO: Contenedor más estrecho y con más espacio interno para la landing page */
 body.index-page .container {
     max-width: 450px; 
     padding: 50px 30px; 
 }
 
 /* 3. Estilo del Logo */
-.logo-image { 
+.logo-image { /* CLASE USADA EN EL HTML CORREGIDO */
     width: 100%;
     max-width: 180px;
     height: auto;
@@ -122,7 +122,7 @@ body.index-page .container {
 }
 
 /* 6. Contenedor de Botones de Navegación */
-.main-actions { 
+.main-actions { /* UTILIZADO EN EL HTML CORREGIDO PARA CENTRAR LOS BOTONES NAV */
     display: flex;
     justify-content: center;
     gap: 15px;
@@ -130,10 +130,10 @@ body.index-page .container {
 }
 
 /* 7. Estilo del Reproductor de Música */
-.music-player { 
+.music-player { /* UTILIZADO EN EL HTML CORREGIDO PARA CENTRAR EL BOTÓN Y SLIDER */
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center; /* CENTRADO HORIZONTAL DEL REPRODUCTOR */
     margin-top: 20px;
     font-size: 0.9rem;
     color: #b0b8c0;
@@ -242,170 +242,6 @@ body.index-page .container {
     display: none;
 }
 
-/* ======================================= */
-/* ====== ESTILOS ESPECÍFICOS: Iniciar Sesión/Registro ====== */
-/* ======================================= */
-
-/* El body en esta página está centrado vertical y horizontalmente */
-body {
-    align-items: center; /* Sobrescribe flex-start de la base */
-    background-color: #0f0f12; /* Fondo levemente más oscuro que el contenedor principal */
-}
-
-/* Ajuste del .container para la página de sesión */
-/* Quitamos el estilo de caja al contenedor principal para que el botón HOME quede fuera de la caja del formulario */
-.container {
-    text-align: left; /* Alineamos la navegación a la izquierda */
-    max-width: 450px; 
-    padding: 0; 
-    background: none; 
-    border: none;
-    box-shadow: none;
-    backdrop-filter: none;
-}
-
-/* Estilo para la Navegación (Botón Home) */
-.nav {
-    justify-content: flex-start; /* Alinea el botón a la izquierda */
-    width: 100%;
-    max-width: 450px; 
-    margin-bottom: 15px; /* Separación sobre el formulario */
-}
-
-/* Ajuste específico para el botón de Home */
-.nav .btn {
-    padding: 8px 16px; 
-    font-size: 0.95rem;
-    gap: 8px;
-}
-
-/* Estilo del Formulario (Ahora la caja principal) */
-form {
-    /* El formulario ahora actúa como el contenedor principal de la página de Login/Registro */
-    width: 100%;
-    max-width: 450px; 
-    height: auto; 
-    padding: 32px 24px;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    
-    /* Fondo y bordes inspirados en el .container principal */
-    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); 
-    margin-top: 0; /* Aseguramos que no haya margen superior si ya está en el .container */
-}
-
-form img {
-    width: 80px; 
-    height: 80px;
-    margin-bottom: 10px;
-    filter: invert(100%);
-    opacity: 0.8;
-}
-
-form h3 {
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    color: #19e0ff;
-}
-
-form input[type="text"], 
-form input[type="password"] {
-    outline: 0;
-    border: 1px solid rgba(255, 255, 255, 0.15); 
-    border-radius: 10px; 
-    background-color: rgba(0, 0, 0, 0.4); 
-    width: 100%; 
-    padding: 12px;
-    margin-bottom: 15px;
-    color: #e9eef2;
-    transition: border-color 0.3s ease;
-} 
-
-form input[type="text"]:focus, 
-form input[type="password"]:focus {
-    border-color: #19e0ff; 
-} 
-
-form label {
-    font-weight: 600;
-    padding: 0 0 5px 0; 
-    align-self: flex-start; 
-    font-size: 0.95rem;
-}
-
-/* Contenedor del checkbox de visibilidad */
-.box-visible {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: flex-start; 
-    align-items: center;
-    margin: 10px 0 25px 0;
-}
-.box-visible label {
-    font-weight: 400;
-    margin-left: 5px;
-    padding: 0;
-}
-
-/* Estilo para el botón principal (Iniciar Sesión / Registrar cuenta) */
-form button,
-.btn-principal {
-    display: inline-block;
-    width: 100%; 
-    padding: 12px 18px;
-    text-decoration: none;
-    font-weight: 600;
-    color: #0f0f12; 
-    background-color: #19e0ff; 
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    text-align: center;
-    margin-top: 10px;
-}
-
-form button:hover,
-.btn-principal:hover {
-    transform: translateY(-2px);
-    background-color: #00c8ea;
-    box-shadow: 0 8px 18px rgba(0, 200, 234, 0.25);
-    opacity: 1; 
-}
-
-form button:active,
-.btn-principal:active {
-    transform: translateY(0);
-}
-
-/* Estilo para el enlace de registro/login (texto secundario) */
-.enlace-registro,
-.enlace-login {
-    margin-top: 25px;
-    font-size: 0.9rem;
-    color: #cfd9e1; 
-}
-
-.enlace-registro a,
-.enlace-login a {
-    color: #19e0ff; 
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.enlace-registro a:hover,
-.enlace-login a:hover {
-    text-decoration: underline;
-}
-
 /* ====== Responsivo (Común) ====== */
 @media (max-width: 550px) {
     body {
@@ -413,8 +249,7 @@ form button:active,
     }
     
     .container {
-        padding: 0; /* El padding lo maneja el form en la página de sesión */
-        max-width: 100%;
+        padding: 30px 20px;
     }
 
     .page-title {
@@ -428,11 +263,5 @@ form button:active,
     .search-input {
         padding: 12px 16px;
     }
-    
-    form {
-        padding: 25px 15px;
-    }
 }
-
-
 
